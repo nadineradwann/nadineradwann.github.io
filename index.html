@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Rivera — Developer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red: #9c1c1c;
+    --red-deep: #7d1414;
+    --cream: #f7ddd1;
+    --cream-soft: #fbe9e1;
+    --maroon-text: #7a1414;
+    --dark: #241005;
+    --pink-text: #f7dad0;
+    --sans: 'Poppins', sans-serif;
+    --serif: 'Playfair Display', serif;
+    --script: 'Yellowtail', cursive;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans); color:var(--pink-text); background:var(--red); overflow-x:hidden;}
+
+  section{
+    min-height:100vh;
+    width:100%;
+    position:relative;
+    padding:64px 90px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  /* ---------- Nav (repeats per-section like the reference, but fixed so it always reads) ---------- */
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+  }
+  .brand{
+    font-size:1.05rem;
+    font-weight:500;
+    letter-spacing:0.3px;
+  }
+  nav.links{
+    display:flex;
+    gap:48px;
+    font-size:1rem;
+    font-weight:400;
+  }
+  nav.links a{
+    color:inherit;
+    text-decoration:none;
+    opacity:0.9;
+    transition:opacity .2s ease;
+  }
+  nav.links a:hover{opacity:1; text-decoration:underline;}
+
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    width:100%;
+    font-size:0.95rem;
+    font-weight:400;
+    opacity:0.9;
+  }
+
+  /* on cream sections, invert text colors */
+  .on-cream{color:var(--maroon-text);}
+  .on-cream nav.links a, .on-cream .brand, .on-cream .footer-row{color:var(--maroon-text);}
+
+  .script-heading{
+    font-family:var(--serif);
+    font-weight:600;
+    line-height:0.95;
+  }
+  .script-heading .cap{
+    font-family:var(--script);
+    font-weight:400;
+  }
+
+  /* ================= HERO ================= */
+  #hero{
+    background:var(--red);
+    align-items:center;
+    padding-top:56px;
+  }
+  .hero-mid{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    gap:0;
+  }
+  .code-stack{
+    position:relative;
+    width:340px;
+    height:300px;
+    margin-bottom:-40px;
+  }
+  .code-card{
+    position:absolute;
+    width:260px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(0,0,0,0.35);
+    background:#1e1e1e;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .code-card .win-bar{
+    height:22px;
+    background:#2d2d2d;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:0 10px;
+  }
+  .win-bar span{width:8px; height:8px; border-radius:50%; display:inline-block;}
+  .win-bar span:nth-child(1){background:#ff5f56;}
+  .win-bar span:nth-child(2){background:#ffbd2e;}
+  .win-bar span:nth-child(3){background:#27c93f;}
+  .code-card .lines{padding:12px 14px; font-family:'Courier New', monospace; font-size:11px; line-height:1.7;}
+  .code-card .lines .l1{color:#c586c0;}
+  .code-card .lines .l2{color:#9cdcfe;}
+  .code-card .lines .l3{color:#ce9178;}
+  .code-card .lines .l4{color:#6a9955;}
+
+  .card-a{top:0; left:0; transform:rotate(-8deg); z-index:1;}
+  .card-b{top:20px; left:70px; transform:rotate(5deg); z-index:2;}
+
+  .hero-title{
+    text-align:center;
+    font-size:6.2rem;
+    color:var(--cream-soft);
+  }
+  .hero-title .line2{display:block; margin-top:-0.15em;}
+
+  #hero .footer-row .role{font-size:1.1rem;}
+
+  /* ================= ABOUT ================= */
+  #about{background:var(--red);}
+  .about-body{
+    flex:1;
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:60px;
+    align-items:center;
+    padding:40px 0;
+  }
+  .about-left h2{font-size:5rem; color:var(--cream-soft); margin-bottom:28px;}
+  .about-left p{max-width:420px; line-height:1.7; font-size:1rem; font-weight:300; color:var(--pink-text);}
+  .about-right{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:24px;
+    align-items:start;
+  }
+  .dev-illustration{
+    background:linear-gradient(180deg,#dfe4e8,#c9d0d6);
+    border-radius:6px;
+    height:420px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .desk-flatlay{
+    background:linear-gradient(160deg,#b8860b 0%, #8a6708 8%, #0f6b60 40%, #0c554c 100%);
+    border-radius:6px;
+    height:320px;
+    padding:18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:12px;
+  }
+  .desk-item{
+    background:rgba(255,255,255,0.12);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.5rem;
+  }
+  .about-caption{
+    grid-column:1/-1;
+    max-width:900px;
+    line-height:1.7;
+    font-size:1rem;
+    font-weight:300;
+    color:var(--pink-text);
+    margin-top:8px;
+  }
+
+  /* ================= PROCESS ================= */
+  #process{background:var(--red);}
+  #process h2{font-size:4.5rem; color:var(--cream-soft); margin-bottom:32px;}
+  .thumb-strip{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:6px;
+    margin-bottom:32px;
+  }
+  .thumb{
+    height:140px;
+    border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.8rem;
+  }
+  .thumb-1{background:linear-gradient(135deg,#274b5e,#3c7a91);}
+  .thumb-2{background:linear-gradient(135deg,#d8c9a3,#efe6d2); color:#333;}
+  .thumb-3{background:linear-gradient(135deg,#5a1f1f,#8a2f2f);}
+  .thumb-4{background:linear-gradient(135deg,#e7ded0,#cfc2a8); color:#333;}
+  .thumb-5{background:linear-gradient(135deg,#3a2a1c,#5c4126);}
+
+  .process-cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    flex:1;
+  }
+  .p-card{
+    padding:32px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:120px;
+  }
+  .p-card h3{font-size:1.05rem; font-weight:600; letter-spacing:0.2px;}
+  .p-card p{font-size:0.92rem; line-height:1.6; font-weight:300;}
+  .p-card.soft{background:var(--cream-soft); color:var(--dark);}
+  .p-card.pink{background:#f3b9bb; color:var(--dark);}
+  .p-card.dark{background:var(--dark); color:var(--cream-soft); border:1px solid rgba(255,255,255,0.25);}
+
+  /* ================= CONTENTS ================= */
+  #contents{background:var(--cream); color:var(--maroon-text);}
+  .contents-body{
+    flex:1;
+    display:grid;
+    grid-template-columns:0.9fr 1.6fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .contents-note{max-width:280px; font-size:0.95rem; line-height:1.6; font-weight:300;}
+  .contents-note .script-heading{font-size:3.6rem; margin-top:26px;}
+  .toc-list{border-top:1px solid rgba(122,20,20,0.35);}
+  .toc-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:20px 0;
+    border-bottom:1px solid rgba(122,20,20,0.35);
+    font-family:var(--sans);
+    font-size:1.9rem;
+    font-weight:500;
+    letter-spacing:0.5px;
+  }
+  .toc-row span.num{font-family:var(--serif); font-weight:600;}
+  .contents-image{
+    background:linear-gradient(160deg,#7a1414 0%, #a52020 55%, #c94a30 100%);
+    border-radius:6px;
+    height:420px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ================= CONTACT ================= */
+  #contact{
+    padding:0;
+    flex-direction:row;
+    min-height:100vh;
+  }
+  .contact-left{
+    background:var(--red);
+    width:42%;
+    padding:64px 70px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .contact-right{
+    background:var(--cream);
+    width:58%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:60px;
+  }
+  .contact-illustration{
+    width:100%;
+    max-width:520px;
+    height:420px;
+    background:linear-gradient(160deg,#e7e2da,#d5cfc4);
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .contact-mid h2{font-size:4.5rem; margin-bottom:20px;}
+  .contact-mid .lead{font-size:1.05rem; font-weight:300; margin-bottom:36px; max-width:320px;}
+  .contact-info{
+    border-left:2px solid rgba(247,218,208,0.4);
+    padding-left:22px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    font-size:1rem;
+    font-weight:300;
+  }
+  .contact-info a{color:inherit; text-decoration:none;}
+  .contact-info a:hover{text-decoration:underline;}
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 900px){
+    section{padding:36px 26px;}
+    nav.links{gap:22px; font-size:0.85rem;}
+    .hero-title{font-size:3.2rem;}
+    .about-body, .contents-body{grid-template-columns:1fr; gap:32px;}
+    .about-right{grid-template-columns:1fr;}
+    .process-cards{grid-template-columns:1fr 1fr;}
+    .thumb-strip{grid-template-columns:repeat(3,1fr);}
+    #contact{flex-direction:column;}
+    .contact-left, .contact-right{width:100%;}
+    .toc-row{font-size:1.3rem;}
+    .contents-image{height:260px;}
+    .p-card{gap:40px;}
+  }
+  @media (max-width: 560px){
+    .process-cards{grid-template-columns:1fr;}
+    .thumb-strip{grid-template-columns:repeat(2,1fr);}
+    .about-left h2, #process h2{font-size:3rem;}
+    .contact-mid h2{font-size:3rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="topbar">
+    <div class="brand">Alex Rivera</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#gallery">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div class="hero-mid">
+    <div class="code-stack">
+      <div class="code-card card-a">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="lines">
+          <div class="l1">function <span class="l2">deploy</span>() {</div>
+          <div class="l3">&nbsp;&nbsp;return "shipped";</div>
+          <div>}</div>
+          <div class="l4">// v1.0.4</div>
+        </div>
+      </div>
+      <div class="code-card card-b">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="lines">
+          <div class="l1">git <span class="l2">commit</span> -m</div>
+          <div class="l3">"fix: edge case"</div>
+          <div>✓ 3 files changed</div>
+        </div>
+      </div>
+    </div>
+    <h1 class="hero-title script-heading">
+      <span class="cap">Alex Rivera's</span>
+      <span class="line2 cap">Portfolio</span>
+    </h1>
+  </div>
+
+  <div class="footer-row">
+    <div class="role">Full-Stack Developer</div>
+    <div>2026</div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="topbar">
+    <div class="brand">Alex Rivera</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#gallery">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div class="about-body">
+    <div class="about-left">
+      <h2 class="script-heading"><span class="cap">A</span>bout <span class="cap">M</span>e</h2>
+      <p>Alex Rivera is a full-stack developer who brings ideas to life through clean, thoughtful code. With a background spanning backend systems, frontend interfaces, and developer tooling, Alex specializes in turning abstract product ideas into reliable, working software.</p>
+    </div>
+    <div class="about-right">
+      <div class="dev-illustration" aria-label="Illustration of a developer at a laptop">
+        <svg width="220" height="360" viewBox="0 0 220 360">
+          <rect width="220" height="360" fill="none"/>
+          <ellipse cx="110" cy="330" rx="70" ry="10" fill="#00000015"/>
+          <rect x="55" y="150" width="70" height="150" rx="20" fill="#1e2530"/>
+          <circle cx="90" cy="110" r="34" fill="#c98a63"/>
+          <path d="M60 100 q30 -40 60 0 q-4 -35 -30 -35 q-26 0 -30 35 z" fill="#2b2118"/>
+          <rect x="70" y="215" width="90" height="55" rx="6" fill="#3a3f46" transform="rotate(-4 70 215)"/>
+          <rect x="76" y="219" width="78" height="42" rx="3" fill="#7fd1c9" transform="rotate(-4 76 219)"/>
+        </svg>
+      </div>
+      <div class="desk-flatlay" aria-label="Illustration of a developer desk">
+        <div class="desk-item">⌨️</div>
+        <div class="desk-item">☕</div>
+        <div class="desk-item">🖱️</div>
+        <div class="desk-item">📓</div>
+        <div class="desk-item">🔍</div>
+        <div class="desk-item">👓</div>
+        <div class="desk-item">🔌</div>
+        <div class="desk-item">📀</div>
+        <div class="desk-item">🪴</div>
+      </div>
+      <p class="about-caption">Alex's work blends creativity with structure, balancing clean architecture and readable code to ship features that hold up in production. Passionate about collaboration and continuous learning, Alex approaches every project as a chance to grow as an engineer.</p>
+    </div>
+  </div>
+
+  <div class="footer-row">
+    <div class="role">Full-Stack Developer</div>
+    <div>2026</div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section id="process">
+  <div class="topbar">
+    <div class="brand">Alex Rivera</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#gallery">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div>
+    <h2 class="script-heading"><span class="cap">P</span>rocess</h2>
+    <div class="thumb-strip">
+      <div class="thumb thumb-1">📋</div>
+      <div class="thumb thumb-2">🧩</div>
+      <div class="thumb thumb-3">💻</div>
+      <div class="thumb thumb-4">🧪</div>
+      <div class="thumb thumb-5">🚀</div>
+    </div>
+  </div>
+
+  <div class="process-cards">
+    <div class="p-card soft">
+      <h3>PLAN &amp; RESEARCH</h3>
+      <p>Start by understanding the problem, the users, and the constraints. This stage builds a solid technical foundation before any code is written.</p>
+    </div>
+    <div class="p-card pink">
+      <h3>DESIGN &amp; PROTOTYPE</h3>
+      <p>Sketch out architecture and data flow, exploring different technical approaches to see which one best fits the problem.</p>
+    </div>
+    <div class="p-card dark">
+      <h3>BUILD &amp; DEVELOP</h3>
+      <p>Write clean, tested code and iterate quickly, turning the plan into a working, functioning product.</p>
+    </div>
+    <div class="p-card soft">
+      <h3>TEST &amp; SHIP</h3>
+      <p>Review, debug, and refine until the product is stable, then deploy it with confidence and monitor it in the wild.</p>
+    </div>
+  </div>
+
+  <div class="footer-row">
+    <div class="role">Full-Stack Developer</div>
+    <div>2026</div>
+  </div>
+</section>
+
+<!-- ================= CONTENTS ================= -->
+<section id="contents" class="on-cream">
+  <div class="topbar">
+    <div class="brand">Alex Rivera</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#gallery">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div class="contents-body">
+    <div class="contents-note">
+      <p>A quick map of this site, written for Alex Rivera, full-stack developer, so it's easy to jump to what interests you:</p>
+      <h2 class="script-heading"><span class="cap">C</span>ontents</h2>
+    </div>
+
+    <div class="toc-list">
+      <div class="toc-row"><span>About Me</span><span class="num">01</span></div>
+      <div class="toc-row"><span>Skills</span><span class="num">02</span></div>
+      <div class="toc-row"><span>Experience</span><span class="num">03</span></div>
+      <div class="toc-row"><span>Process</span><span class="num">04</span></div>
+      <div class="toc-row"><span>Projects</span><span class="num">05</span></div>
+      <div class="toc-row"><span>Next Steps</span><span class="num">06</span></div>
+      <div class="toc-row"><span>Contact</span><span class="num">07</span></div>
+    </div>
+
+    <div class="contents-image" aria-label="Illustration of a desk lamp and monitor">
+      <svg width="200" height="320" viewBox="0 0 200 320">
+        <rect x="20" y="230" width="160" height="14" rx="4" fill="#00000030"/>
+        <rect x="55" y="150" width="90" height="65" rx="4" fill="#161616"/>
+        <rect x="61" y="156" width="78" height="53" fill="#3c8f86"/>
+        <rect x="92" y="215" width="16" height="20" fill="#161616"/>
+        <rect x="70" y="235" width="60" height="8" rx="3" fill="#161616"/>
+        <circle cx="150" cy="90" r="24" fill="#f2f2f2"/>
+        <rect x="146" y="112" width="8" height="70" fill="#cfcfcf"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="footer-row">
+    <div class="role">Full-Stack Developer</div>
+    <div>2026</div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="contact-left">
+    <div class="topbar">
+      <div class="brand">Alex Rivera</div>
+    </div>
+
+    <div class="contact-mid">
+      <h2 class="script-heading"><span class="cap">C</span>ontact</h2>
+      <p class="lead">Thanks for taking the time to look through my work!</p>
+      <div class="contact-info">
+        <a href="mailto:hello@alexrivera.dev">hello@alexrivera.dev</a>
+        <a href="https://github.com/alexrivera" target="_blank" rel="noopener">github.com/alexrivera</a>
+        <a href="https://linkedin.com/in/alexrivera" target="_blank" rel="noopener">linkedin.com/in/alexrivera</a>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <div class="role">Full-Stack Developer</div>
+      <div>2026</div>
+    </div>
+  </div>
+
+  <div class="contact-right">
+    <div class="contact-illustration" aria-label="Illustration of a developer relaxing with a laptop">
+      <svg width="320" height="300" viewBox="0 0 320 300">
+        <rect x="30" y="230" width="260" height="14" rx="6" fill="#00000018"/>
+        <rect x="60" y="120" width="200" height="90" rx="10" fill="#d9d3c7"/>
+        <rect x="80" y="140" width="70" height="50" rx="6" fill="#8f8578"/>
+        <circle cx="200" cy="100" r="30" fill="#c98a63"/>
+        <rect x="150" y="150" width="110" height="60" rx="8" fill="#2e2e2e" transform="rotate(-3 150 150)"/>
+        <rect x="156" y="155" width="98" height="46" rx="3" fill="#89d0c6" transform="rotate(-3 156 155)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
