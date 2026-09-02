@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alex Rivera — Developer Portfolio</title>
+<title>Shawn Garcia — Art Director Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -33,7 +33,7 @@
     justify-content:space-between;
   }
 
-  /* ---------- Nav (repeats per-section like the reference, but fixed so it always reads) ---------- */
+  /* ---------- Nav (repeats per section) ---------- */
   .topbar{
     display:flex;
     justify-content:space-between;
@@ -69,7 +69,6 @@
     opacity:0.9;
   }
 
-  /* on cream sections, invert text colors */
   .on-cream{color:var(--maroon-text);}
   .on-cream nav.links a, .on-cream .brand, .on-cream .footer-row{color:var(--maroon-text);}
 
@@ -83,7 +82,21 @@
     font-weight:400;
   }
 
-  /* ================= HERO ================= */
+  /* generic placeholder-photo helper: swap any of these backgrounds
+     for a real <img src="..."> when photos are ready */
+  .photo{
+    background-size:cover;
+    background-position:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .photo::after{
+    content:"";
+    position:absolute; inset:0;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);
+  }
+
+  /* ================= HERO (ref: image 1) ================= */
   #hero{
     background:var(--red);
     align-items:center;
@@ -98,128 +111,101 @@
     position:relative;
     gap:0;
   }
-  .code-stack{
+  .photo-stack{
     position:relative;
-    width:340px;
+    width:380px;
     height:300px;
-    margin-bottom:-40px;
+    margin-bottom:-30px;
   }
-  .code-card{
+  .stack-photo{
     position:absolute;
-    width:260px;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 20px 45px rgba(0,0,0,0.35);
-    background:#1e1e1e;
-    border:1px solid rgba(255,255,255,0.08);
+    width:220px;
+    height:300px;
+    border-radius:4px;
+    box-shadow:0 25px 50px rgba(0,0,0,0.4);
   }
-  .code-card .win-bar{
-    height:22px;
-    background:#2d2d2d;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    padding:0 10px;
+  .stack-photo.p1{
+    top:0; left:120px;
+    transform:rotate(9deg);
+    z-index:1;
+    background:linear-gradient(165deg,#efe6da 0%,#8a2f1c 45%,#6b1e14 100%);
   }
-  .win-bar span{width:8px; height:8px; border-radius:50%; display:inline-block;}
-  .win-bar span:nth-child(1){background:#ff5f56;}
-  .win-bar span:nth-child(2){background:#ffbd2e;}
-  .win-bar span:nth-child(3){background:#27c93f;}
-  .code-card .lines{padding:12px 14px; font-family:'Courier New', monospace; font-size:11px; line-height:1.7;}
-  .code-card .lines .l1{color:#c586c0;}
-  .code-card .lines .l2{color:#9cdcfe;}
-  .code-card .lines .l3{color:#ce9178;}
-  .code-card .lines .l4{color:#6a9955;}
-
-  .card-a{top:0; left:0; transform:rotate(-8deg); z-index:1;}
-  .card-b{top:20px; left:70px; transform:rotate(5deg); z-index:2;}
+  .stack-photo.p2{
+    top:6px; left:60px;
+    transform:rotate(-5deg);
+    z-index:2;
+    background:linear-gradient(200deg,#c9c2b4 0%,#7a6a4f 55%,#4a3c26 100%);
+  }
+  .stack-photo.p3{
+    top:12px; left:0;
+    transform:rotate(-1deg);
+    z-index:3;
+    background:linear-gradient(175deg,#d9d4c9 0%,#b8ada0 40%,#8a6a4a 100%);
+  }
+  .stack-photo .silhouette{
+    position:absolute; inset:0;
+    display:flex; align-items:flex-end; justify-content:center;
+  }
 
   .hero-title{
     text-align:center;
-    font-size:6.2rem;
+    font-size:6rem;
     color:var(--cream-soft);
   }
   .hero-title .line2{display:block; margin-top:-0.15em;}
 
-  #hero .footer-row .role{font-size:1.1rem;}
-
-  /* ================= ABOUT ================= */
+  /* ================= ABOUT (ref: image 5) ================= */
   #about{background:var(--red);}
   .about-body{
     flex:1;
     display:grid;
-    grid-template-columns:1fr 1.3fr;
+    grid-template-columns:0.85fr 1.6fr;
     gap:60px;
-    align-items:center;
-    padding:40px 0;
+    align-items:start;
+    padding:60px 0 20px;
   }
-  .about-left h2{font-size:5rem; color:var(--cream-soft); margin-bottom:28px;}
-  .about-left p{max-width:420px; line-height:1.7; font-size:1rem; font-weight:300; color:var(--pink-text);}
-  .about-right{
+  .about-left h2{font-size:4.6rem; color:var(--cream-soft); margin-bottom:26px;}
+  .about-left p{max-width:400px; line-height:1.8; font-size:0.98rem; font-weight:300; color:var(--pink-text);}
+  .about-right{display:flex; flex-direction:column; gap:20px;}
+  .about-images{
     display:grid;
-    grid-template-columns:1.1fr 1fr;
+    grid-template-columns:1.55fr 1fr;
     gap:24px;
     align-items:start;
   }
-  .dev-illustration{
-    background:linear-gradient(180deg,#dfe4e8,#c9d0d6);
-    border-radius:6px;
+  .about-portrait{
     height:420px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
+    border-radius:2px;
+    background:linear-gradient(180deg,#e2ded4 0%,#cfc7b7 55%,#2b2620 100%);
   }
-  .desk-flatlay{
-    background:linear-gradient(160deg,#b8860b 0%, #8a6708 8%, #0f6b60 40%, #0c554c 100%);
-    border-radius:6px;
-    height:320px;
-    padding:18px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    grid-template-rows:repeat(3,1fr);
-    gap:12px;
-  }
-  .desk-item{
-    background:rgba(255,255,255,0.12);
-    border-radius:8px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:1.5rem;
+  .about-still{
+    height:300px;
+    border-radius:2px;
+    background:linear-gradient(150deg,#b8860b 0%,#8a6708 30%,#116b60 65%,#0c554c 100%);
   }
   .about-caption{
-    grid-column:1/-1;
-    max-width:900px;
-    line-height:1.7;
-    font-size:1rem;
+    max-width:920px;
+    line-height:1.8;
+    font-size:0.98rem;
     font-weight:300;
     color:var(--pink-text);
-    margin-top:8px;
   }
 
-  /* ================= PROCESS ================= */
+  /* ================= PROCESS (ref: image 3) ================= */
   #process{background:var(--red);}
-  #process h2{font-size:4.5rem; color:var(--cream-soft); margin-bottom:32px;}
+  #process h2{font-size:4.4rem; color:var(--cream-soft); margin-bottom:30px;}
   .thumb-strip{
     display:grid;
     grid-template-columns:repeat(5,1fr);
     gap:6px;
-    margin-bottom:32px;
+    margin-bottom:30px;
   }
-  .thumb{
-    height:140px;
-    border-radius:4px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:1.8rem;
-  }
+  .thumb{height:140px; border-radius:2px;}
   .thumb-1{background:linear-gradient(135deg,#274b5e,#3c7a91);}
-  .thumb-2{background:linear-gradient(135deg,#d8c9a3,#efe6d2); color:#333;}
-  .thumb-3{background:linear-gradient(135deg,#5a1f1f,#8a2f2f);}
-  .thumb-4{background:linear-gradient(135deg,#e7ded0,#cfc2a8); color:#333;}
-  .thumb-5{background:linear-gradient(135deg,#3a2a1c,#5c4126);}
+  .thumb-2{background:linear-gradient(135deg,#d8c9a3,#efe6d2);}
+  .thumb-3{background:linear-gradient(135deg,#8a2f2f,#c9573f);}
+  .thumb-4{background:linear-gradient(135deg,#e7ded0,#cfc2a8);}
+  .thumb-5{background:linear-gradient(135deg,#3a2a1c,#8a6a3a);}
 
   .process-cards{
     display:grid;
@@ -231,31 +217,32 @@
     padding:32px 26px;
     display:flex;
     flex-direction:column;
-    gap:120px;
+    gap:130px;
   }
-  .p-card h3{font-size:1.05rem; font-weight:600; letter-spacing:0.2px;}
-  .p-card p{font-size:0.92rem; line-height:1.6; font-weight:300;}
+  .p-card h3{font-size:1rem; font-weight:600; letter-spacing:0.2px;}
+  .p-card p{font-size:0.92rem; line-height:1.65; font-weight:300;}
   .p-card.soft{background:var(--cream-soft); color:var(--dark);}
   .p-card.pink{background:#f3b9bb; color:var(--dark);}
   .p-card.dark{background:var(--dark); color:var(--cream-soft); border:1px solid rgba(255,255,255,0.25);}
 
-  /* ================= CONTENTS ================= */
+  /* ================= CONTENTS (ref: image 2) ================= */
   #contents{background:var(--cream); color:var(--maroon-text);}
   .contents-body{
     flex:1;
     display:grid;
-    grid-template-columns:0.9fr 1.6fr 1fr;
+    grid-template-columns:0.85fr 1.65fr 1fr;
     gap:40px;
     align-items:center;
   }
-  .contents-note{max-width:280px; font-size:0.95rem; line-height:1.6; font-weight:300;}
-  .contents-note .script-heading{font-size:3.6rem; margin-top:26px;}
+  .contents-note{max-width:280px; display:flex; flex-direction:column; height:100%; justify-content:flex-end;}
+  .contents-note p{font-size:0.95rem; line-height:1.6; font-weight:300;}
+  .contents-note .script-heading{font-size:3.6rem; margin-top:auto; padding-top:180px;}
   .toc-list{border-top:1px solid rgba(122,20,20,0.35);}
   .toc-row{
     display:flex;
     justify-content:space-between;
     align-items:baseline;
-    padding:20px 0;
+    padding:18px 0;
     border-bottom:1px solid rgba(122,20,20,0.35);
     font-family:var(--sans);
     font-size:1.9rem;
@@ -264,51 +251,28 @@
   }
   .toc-row span.num{font-family:var(--serif); font-weight:600;}
   .contents-image{
-    background:linear-gradient(160deg,#7a1414 0%, #a52020 55%, #c94a30 100%);
-    border-radius:6px;
     height:420px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
+    border-radius:2px;
+    background:linear-gradient(160deg,#7a1414 0%, #a52020 45%, #c94a30 100%);
   }
 
-  /* ================= CONTACT ================= */
-  #contact{
-    padding:0;
-    flex-direction:row;
-    min-height:100vh;
-  }
-  .contact-left{
-    background:var(--red);
-    width:42%;
-    padding:64px 70px;
+  /* ================= CONTACT (ref: image 4) ================= */
+  #contact{padding:0; min-height:100vh; position:relative;}
+  .contact-bg-left{position:absolute; top:0; left:0; width:44%; height:100%; background:var(--red); z-index:0;}
+  .contact-bg-right{position:absolute; top:0; left:44%; width:56%; height:100%; background:var(--cream); z-index:0;}
+  .contact-content{
+    position:relative;
+    z-index:1;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
+    min-height:100vh;
+    padding:64px 90px;
+    width:44%;
   }
-  .contact-right{
-    background:var(--cream);
-    width:58%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:60px;
-  }
-  .contact-illustration{
-    width:100%;
-    max-width:520px;
-    height:420px;
-    background:linear-gradient(160deg,#e7e2da,#d5cfc4);
-    border-radius:6px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-  }
-  .contact-mid h2{font-size:4.5rem; margin-bottom:20px;}
-  .contact-mid .lead{font-size:1.05rem; font-weight:300; margin-bottom:36px; max-width:320px;}
+  .contact-content .topbar nav.links a{color:var(--pink-text);}
+  .contact-mid h2{font-size:4.4rem; margin-bottom:18px;}
+  .contact-mid .lead{font-size:1.05rem; font-weight:300; margin-bottom:34px; max-width:300px;}
   .contact-info{
     border-left:2px solid rgba(247,218,208,0.4);
     padding-left:22px;
@@ -320,18 +284,37 @@
   }
   .contact-info a{color:inherit; text-decoration:none;}
   .contact-info a:hover{text-decoration:underline;}
+  .contact-photo{
+    position:absolute;
+    z-index:2;
+    top:9%;
+    left:32%;
+    width:46%;
+    height:82%;
+    border-radius:2px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+    background:linear-gradient(150deg,#d9d3c7 0%,#b7ab98 35%,#3a3f46 70%,#89d0c6 100%);
+  }
+  .contact-nav-overlay{
+    position:absolute; top:64px; right:90px; z-index:3;
+    display:flex; gap:48px; font-size:1rem; color:var(--maroon-text); opacity:0.55;
+  }
+  .contact-nav-overlay a{color:inherit; text-decoration:none;}
 
   /* ================= RESPONSIVE ================= */
   @media (max-width: 900px){
     section{padding:36px 26px;}
     nav.links{gap:22px; font-size:0.85rem;}
-    .hero-title{font-size:3.2rem;}
+    .hero-title{font-size:3rem;}
     .about-body, .contents-body{grid-template-columns:1fr; gap:32px;}
-    .about-right{grid-template-columns:1fr;}
+    .about-images{grid-template-columns:1fr;}
     .process-cards{grid-template-columns:1fr 1fr;}
     .thumb-strip{grid-template-columns:repeat(3,1fr);}
     #contact{flex-direction:column;}
-    .contact-left, .contact-right{width:100%;}
+    .contact-bg-left, .contact-bg-right{position:static; width:100%; height:auto;}
+    .contact-content{width:100%; position:static; padding:36px 26px;}
+    .contact-photo{position:static; width:100%; height:320px; margin-top:24px;}
+    .contact-nav-overlay{display:none;}
     .toc-row{font-size:1.3rem;}
     .contents-image{height:260px;}
     .p-card{gap:40px;}
@@ -339,63 +322,50 @@
   @media (max-width: 560px){
     .process-cards{grid-template-columns:1fr;}
     .thumb-strip{grid-template-columns:repeat(2,1fr);}
-    .about-left h2, #process h2{font-size:3rem;}
+    .about-left h2, #process h2{font-size:2.6rem;}
     .contact-mid h2{font-size:3rem;}
   }
 </style>
 </head>
 <body>
 
-<!-- ================= HERO ================= -->
+<!-- ================= HERO — ref: image 1 ================= -->
 <section id="hero">
   <div class="topbar">
-    <div class="brand">Alex Rivera</div>
+    <div class="brand">Shawn Garcia</div>
     <nav class="links">
       <a href="#about">About</a>
-      <a href="#gallery">Projects</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 
   <div class="hero-mid">
-    <div class="code-stack">
-      <div class="code-card card-a">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="lines">
-          <div class="l1">function <span class="l2">deploy</span>() {</div>
-          <div class="l3">&nbsp;&nbsp;return "shipped";</div>
-          <div>}</div>
-          <div class="l4">// v1.0.4</div>
-        </div>
-      </div>
-      <div class="code-card card-b">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="lines">
-          <div class="l1">git <span class="l2">commit</span> -m</div>
-          <div class="l3">"fix: edge case"</div>
-          <div>✓ 3 files changed</div>
-        </div>
-      </div>
+    <!-- fanned photo collage placeholder — swap each .stack-photo background for a real photo -->
+    <div class="photo-stack">
+      <div class="stack-photo p1 photo"></div>
+      <div class="stack-photo p2 photo"></div>
+      <div class="stack-photo p3 photo"></div>
     </div>
     <h1 class="hero-title script-heading">
-      <span class="cap">Alex Rivera's</span>
-      <span class="line2 cap">Portfolio</span>
+      <span class="cap">S</span>hawn's
+      <span class="line2"><span class="cap">P</span>ortfolio</span>
     </h1>
   </div>
 
   <div class="footer-row">
-    <div class="role">Full-Stack Developer</div>
-    <div>2026</div>
+    <div class="role">Art Director</div>
+    <div>2027</div>
   </div>
 </section>
 
-<!-- ================= ABOUT ================= -->
+<!-- ================= ABOUT — ref: image 5 ================= -->
 <section id="about">
   <div class="topbar">
-    <div class="brand">Alex Rivera</div>
+    <div class="brand">Shawn Garcia</div>
     <nav class="links">
       <a href="#about">About</a>
-      <a href="#gallery">Projects</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -403,169 +373,143 @@
   <div class="about-body">
     <div class="about-left">
       <h2 class="script-heading"><span class="cap">A</span>bout <span class="cap">M</span>e</h2>
-      <p>Alex Rivera is a full-stack developer who brings ideas to life through clean, thoughtful code. With a background spanning backend systems, frontend interfaces, and developer tooling, Alex specializes in turning abstract product ideas into reliable, working software.</p>
+      <p>Shawn Garcia is an art director who brings ideas to life through thoughtful visual storytelling. With a background spanning design, illustration, and creative strategy, she specializes in turning abstract concepts into clear, engaging visuals.</p>
     </div>
     <div class="about-right">
-      <div class="dev-illustration" aria-label="Illustration of a developer at a laptop">
-        <svg width="220" height="360" viewBox="0 0 220 360">
-          <rect width="220" height="360" fill="none"/>
-          <ellipse cx="110" cy="330" rx="70" ry="10" fill="#00000015"/>
-          <rect x="55" y="150" width="70" height="150" rx="20" fill="#1e2530"/>
-          <circle cx="90" cy="110" r="34" fill="#c98a63"/>
-          <path d="M60 100 q30 -40 60 0 q-4 -35 -30 -35 q-26 0 -30 35 z" fill="#2b2118"/>
-          <rect x="70" y="215" width="90" height="55" rx="6" fill="#3a3f46" transform="rotate(-4 70 215)"/>
-          <rect x="76" y="219" width="78" height="42" rx="3" fill="#7fd1c9" transform="rotate(-4 76 219)"/>
-        </svg>
+      <div class="about-images">
+        <!-- portrait photo placeholder: person using a laptop, standing -->
+        <div class="about-portrait photo"></div>
+        <!-- still-life photo placeholder: desk lamp + curtain scene -->
+        <div class="about-still photo"></div>
       </div>
-      <div class="desk-flatlay" aria-label="Illustration of a developer desk">
-        <div class="desk-item">⌨️</div>
-        <div class="desk-item">☕</div>
-        <div class="desk-item">🖱️</div>
-        <div class="desk-item">📓</div>
-        <div class="desk-item">🔍</div>
-        <div class="desk-item">👓</div>
-        <div class="desk-item">🔌</div>
-        <div class="desk-item">📀</div>
-        <div class="desk-item">🪴</div>
-      </div>
-      <p class="about-caption">Alex's work blends creativity with structure, balancing clean architecture and readable code to ship features that hold up in production. Passionate about collaboration and continuous learning, Alex approaches every project as a chance to grow as an engineer.</p>
+      <p class="about-caption">Her work blends creativity with structure, balancing originality and clarity to deliver designs that resonate with audiences. Passionate about collaboration and continuous learning, Shawn approaches every project as an opportunity to connect people through design.</p>
     </div>
   </div>
 
   <div class="footer-row">
-    <div class="role">Full-Stack Developer</div>
-    <div>2026</div>
+    <div class="role">Art Director</div>
+    <div>2027</div>
   </div>
 </section>
 
-<!-- ================= PROCESS ================= -->
+<!-- ================= PROCESS — ref: image 3 ================= -->
 <section id="process">
   <div class="topbar">
-    <div class="brand">Alex Rivera</div>
+    <div class="brand">Shawn Garcia</div>
     <nav class="links">
       <a href="#about">About</a>
-      <a href="#gallery">Projects</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 
   <div>
     <h2 class="script-heading"><span class="cap">P</span>rocess</h2>
+    <!-- five workspace-photo placeholders -->
     <div class="thumb-strip">
-      <div class="thumb thumb-1">📋</div>
-      <div class="thumb thumb-2">🧩</div>
-      <div class="thumb thumb-3">💻</div>
-      <div class="thumb thumb-4">🧪</div>
-      <div class="thumb thumb-5">🚀</div>
+      <div class="thumb thumb-1 photo"></div>
+      <div class="thumb thumb-2 photo"></div>
+      <div class="thumb thumb-3 photo"></div>
+      <div class="thumb thumb-4 photo"></div>
+      <div class="thumb thumb-5 photo"></div>
     </div>
   </div>
 
   <div class="process-cards">
     <div class="p-card soft">
-      <h3>PLAN &amp; RESEARCH</h3>
-      <p>Start by understanding the problem, the users, and the constraints. This stage builds a solid technical foundation before any code is written.</p>
+      <h3>RESEARCH &amp; DISCOVERY</h3>
+      <p>Start by understanding the client's goals, audience, and the story behind the project. This stage helps build a strong creative foundation.</p>
     </div>
     <div class="p-card pink">
-      <h3>DESIGN &amp; PROTOTYPE</h3>
-      <p>Sketch out architecture and data flow, exploring different technical approaches to see which one best fits the problem.</p>
+      <h3>BRAINSTORM &amp; SKETCH</h3>
+      <p>Explore different ideas and directions through rough sketches and notes. This creative phase turns abstract concepts into possible visual solutions.</p>
     </div>
     <div class="p-card dark">
-      <h3>BUILD &amp; DEVELOP</h3>
-      <p>Write clean, tested code and iterate quickly, turning the plan into a working, functioning product.</p>
+      <h3>DEVELOP &amp; PROTOTYPE</h3>
+      <p>Translate sketches into digital mockups or prototypes, testing layout, colors, and visual flow to see how ideas work in practice.</p>
     </div>
     <div class="p-card soft">
-      <h3>TEST &amp; SHIP</h3>
-      <p>Review, debug, and refine until the product is stable, then deploy it with confidence and monitor it in the wild.</p>
+      <h3>REFINE &amp; FINALIZE</h3>
+      <p>Gather feedback and make thoughtful adjustments. The design is refined until it clearly communicates the intended message and feels polished.</p>
     </div>
   </div>
 
   <div class="footer-row">
-    <div class="role">Full-Stack Developer</div>
-    <div>2026</div>
+    <div class="role">Art Director</div>
+    <div>2027</div>
   </div>
 </section>
 
-<!-- ================= CONTENTS ================= -->
+<!-- ================= CONTENTS — ref: image 2 ================= -->
 <section id="contents" class="on-cream">
   <div class="topbar">
-    <div class="brand">Alex Rivera</div>
+    <div class="brand">Shawn Garcia</div>
     <nav class="links">
       <a href="#about">About</a>
-      <a href="#gallery">Projects</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 
   <div class="contents-body">
     <div class="contents-note">
-      <p>A quick map of this site, written for Alex Rivera, full-stack developer, so it's easy to jump to what interests you:</p>
-      <h2 class="script-heading"><span class="cap">C</span>ontents</h2>
+      <p>All written in a natural, professional style for Shawn Garcia, Art Director, and ready to turn into slides:</p>
+      <h2 class="script-heading"><span class="cap">C</span>ontent</h2>
     </div>
 
     <div class="toc-list">
-      <div class="toc-row"><span>About Me</span><span class="num">01</span></div>
-      <div class="toc-row"><span>Skills</span><span class="num">02</span></div>
-      <div class="toc-row"><span>Experience</span><span class="num">03</span></div>
-      <div class="toc-row"><span>Process</span><span class="num">04</span></div>
-      <div class="toc-row"><span>Projects</span><span class="num">05</span></div>
-      <div class="toc-row"><span>Next Steps</span><span class="num">06</span></div>
-      <div class="toc-row"><span>Contact</span><span class="num">07</span></div>
+      <div class="toc-row"><span>ABOUT ME</span><span class="num">01</span></div>
+      <div class="toc-row"><span>CREATIVE</span><span class="num">02</span></div>
+      <div class="toc-row"><span>EXPERIENCE</span><span class="num">03</span></div>
+      <div class="toc-row"><span>PROCESS</span><span class="num">04</span></div>
+      <div class="toc-row"><span>PROJECT</span><span class="num">05</span></div>
+      <div class="toc-row"><span>NEXT STEPS</span><span class="num">06</span></div>
+      <div class="toc-row"><span>CONTACT</span><span class="num">07</span></div>
     </div>
 
-    <div class="contents-image" aria-label="Illustration of a desk lamp and monitor">
-      <svg width="200" height="320" viewBox="0 0 200 320">
-        <rect x="20" y="230" width="160" height="14" rx="4" fill="#00000030"/>
-        <rect x="55" y="150" width="90" height="65" rx="4" fill="#161616"/>
-        <rect x="61" y="156" width="78" height="53" fill="#3c8f86"/>
-        <rect x="92" y="215" width="16" height="20" fill="#161616"/>
-        <rect x="70" y="235" width="60" height="8" rx="3" fill="#161616"/>
-        <circle cx="150" cy="90" r="24" fill="#f2f2f2"/>
-        <rect x="146" y="112" width="8" height="70" fill="#cfcfcf"/>
-      </svg>
-    </div>
+    <!-- desk-lamp still-life photo placeholder -->
+    <div class="contents-image photo"></div>
   </div>
 
   <div class="footer-row">
-    <div class="role">Full-Stack Developer</div>
-    <div>2026</div>
+    <div class="role">Art Director</div>
+    <div>2027</div>
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
+<!-- ================= CONTACT — ref: image 4 ================= -->
 <section id="contact">
-  <div class="contact-left">
+  <div class="contact-bg-left"></div>
+  <div class="contact-bg-right"></div>
+  <div class="contact-nav-overlay">
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div class="contact-content">
     <div class="topbar">
-      <div class="brand">Alex Rivera</div>
+      <div class="brand">Shawn Garcia</div>
     </div>
 
     <div class="contact-mid">
       <h2 class="script-heading"><span class="cap">C</span>ontact</h2>
-      <p class="lead">Thanks for taking the time to look through my work!</p>
+      <p class="lead">Thank you for viewing this portfolio!</p>
       <div class="contact-info">
-        <a href="mailto:hello@alexrivera.dev">hello@alexrivera.dev</a>
-        <a href="https://github.com/alexrivera" target="_blank" rel="noopener">github.com/alexrivera</a>
-        <a href="https://linkedin.com/in/alexrivera" target="_blank" rel="noopener">linkedin.com/in/alexrivera</a>
+        <a href="tel:+1234567890">+123-456-7890</a>
+        <a href="mailto:hello@reallygreatsite.com">hello@reallygreatsite.com</a>
+        <a href="https://www.reallygreatsite.com" target="_blank" rel="noopener">www.reallygreatsite.com</a>
       </div>
     </div>
 
     <div class="footer-row">
-      <div class="role">Full-Stack Developer</div>
-      <div>2026</div>
+      <div class="role">Art Director</div>
+      <div>2027</div>
     </div>
   </div>
 
-  <div class="contact-right">
-    <div class="contact-illustration" aria-label="Illustration of a developer relaxing with a laptop">
-      <svg width="320" height="300" viewBox="0 0 320 300">
-        <rect x="30" y="230" width="260" height="14" rx="6" fill="#00000018"/>
-        <rect x="60" y="120" width="200" height="90" rx="10" fill="#d9d3c7"/>
-        <rect x="80" y="140" width="70" height="50" rx="6" fill="#8f8578"/>
-        <circle cx="200" cy="100" r="30" fill="#c98a63"/>
-        <rect x="150" y="150" width="110" height="60" rx="8" fill="#2e2e2e" transform="rotate(-3 150 150)"/>
-        <rect x="156" y="155" width="98" height="46" rx="3" fill="#89d0c6" transform="rotate(-3 156 155)"/>
-      </svg>
-    </div>
-  </div>
+  <!-- photo placeholder: person seated with laptop, overlapping both background halves -->
+  <div class="contact-photo photo"></div>
 </section>
 
 </body>
